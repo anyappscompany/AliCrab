@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--<item
+        android:id = "@+id/listOfNotesFragment"
+        android:title = "@string/btn_list_of_notes_text"
+        android:icon="@drawable/ic_list_of_notes"
+        android:orderInCategory = "100"
+        />
+    <item
+        android:id = "@+id/addNoteFragment"
+        android:title = "@string/btn_list_add_note_text"
+        android:icon="@drawable/ic_add_note"
+        android:orderInCategory = "100"
+        />-->
+    <item
+        android:id = "@+id/topFragment"
+        android:title = "@string/nav_top_btn_text"
+        android:icon="@drawable/ic_top"
+        android:orderInCategory = "100"
+        />
+    <item
+        android:id = "@+id/historyFragment"
+        android:title = "@string/nav_history_btn_text"
+        android:icon="@drawable/ic_history"
+        android:orderInCategory = "100"
+        />
+    <item
+        android:id = "@+id/settingsFragment"
+        android:title = "@string/nav_settings_btn_text"
+        android:icon="@drawable/ic_settings"
+        android:orderInCategory = "100"
+        />
+</menu>

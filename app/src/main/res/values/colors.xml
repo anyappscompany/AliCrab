@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="toolbar_white">#FAFAFA</color>
+
+    <!-- theme0 -->
+    <color name="theme0Color1">#BCD8C1</color>
+    <color name="theme0Color2">#D6DBB2</color>
+    <color name="theme0Color3">#E3D985</color>
+    <color name="theme0Color4">#E57A44</color>
+    <color name="theme0Color5">#422040</color>
+
+    <!-- theme1 -->
+    <color name="theme1Color1">#BFB5AF</color>
+    <color name="theme1Color2">#ECE2D0</color>
+    <color name="theme1Color3">#D5B9B2</color>
+    <color name="theme1Color4">#A26769</color>
+    <color name="theme1Color5">#582C4D</color>
+
+    <!-- theme2 -->
+    <color name="theme2Color1">#9E788F</color>
+    <color name="theme2Color2">#A9B3CE</color>
+    <color name="theme2Color3">#7CDEDC</color>
+    <color name="theme2Color4">#7284A8</color>
+    <color name="theme2Color5">#474954</color>
+
+    <!-- theme3 -->
+    <color name="theme3Color1">#D1C6AD</color>
+    <color name="theme3Color2">#BBADA0</color>
+    <color name="theme3Color3">#A1869E</color>
+    <color name="theme3Color4">#797596</color>
+    <color name="theme3Color5">#0B1D51</color>
+
+    <!-- theme2 -->
+    <color name="theme4Color1">#F4E409</color>
+    <color name="theme4Color2">#EEBA0B</color>
+    <color name="theme4Color3">#C36F09</color>
+    <color name="theme4Color4">#A63C06</color>
+    <color name="theme4Color5">#710000</color>
+
+</resources>
