@@ -1,40 +1,30 @@
 package ua.com.anyapps.alicrab.ui.fragments
 
 import android.os.Bundle
+import android.preference.PreferenceManager
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import ua.com.anyapps.alicrab.BaseFragment
 import ua.com.anyapps.alicrab.R
+import ua.com.anyapps.alicrab.viewmodel.SharedPreferencesViewModel
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class SettingsFragment : Fragment() {
 
-/**
- * A simple [Fragment] subclass.
- * Use the [SettingsFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class SettingsFragment : BaseFragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private lateinit var sharedPreferencesViewModel: SharedPreferencesViewModel
+    private var currentTheme = THEME0
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setupViewModel()
+        currentTheme = PreferenceManager.getDefaultSharedPreferences(requireContext()).getInt(KEY_THEME, THEME0)
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         setAppTheme(0)
         val view: View  = inflater.inflate(R.layout.fragment_settings, container, false)
@@ -50,6 +40,11 @@ class SettingsFragment : BaseFragment() {
         })
     }
 
+    private fun setupViewModel(){
+        sharedPreferencesViewModel = SharedPreferencesViewModel()
+    }
+
+
     companion object {
         /**
          * Use this factory method to create a new instance of
@@ -62,11 +57,40 @@ class SettingsFragment : BaseFragment() {
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            SettingsFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+                SettingsFragment()
+
+        private const val KEY_THEME = "Theme"
+        private const val THEME0 = R.style.Theme0
+        private const val THEME1 = R.style.Theme1
+        private const val THEME2 = R.style.Theme2
+        private const val THEME3 = R.style.Theme3
+        private const val THEME4 = R.style.Theme4
+    }
+
+    protected fun setAppTheme(themeId: Int){
+        /*setTheme(currentTheme)
+        getContext().getTheme().applyStyle(styleId, true);*/
+        requireContext().theme.applyStyle(currentTheme, true)
+    }
+
+    protected fun switchTheme(){
+        currentTheme = when(currentTheme){
+            THEME0 -> THEME1
+            THEME1 -> THEME2
+            THEME2 -> THEME3
+            THEME3 -> THEME4
+            THEME4 -> THEME0
+            else -> -1
+        }
+        PreferenceManager.getDefaultSharedPreferences(requireContext()).edit().putInt(KEY_THEME, currentTheme).apply()
+    }
+
+    private fun getColorPrimary() = when(currentTheme){
+        THEME0 -> R.color.theme0Color1
+        THEME1 -> R.color.theme1Color1
+        THEME2 -> R.color.theme2Color1
+        THEME3 -> R.color.theme3Color1
+        THEME4 -> R.color.theme4Color1
+        else -> android.R.color.background_light
     }
 }

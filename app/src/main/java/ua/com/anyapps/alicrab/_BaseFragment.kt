@@ -11,11 +11,11 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 
-abstract class BaseFragment: Fragment() {
-    private var currentTheme = THEME2
+abstract class _BaseFragment: Fragment() {
+    private var currentTheme = THEME0
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        currentTheme = PreferenceManager.getDefaultSharedPreferences(requireContext()).getInt(KEY_THEME, THEME2)
+        currentTheme = PreferenceManager.getDefaultSharedPreferences(requireContext()).getInt(KEY_THEME, THEME0)
         super.onCreate(savedInstanceState)
     }
 
