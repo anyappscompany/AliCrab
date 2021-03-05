@@ -88,4 +88,34 @@
         <!-- BottomNavigationView -->
         <item name="itemTextColor">@color/theme4Color5</item>
     </style>
+
+    <style name="Theme5" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/theme5Color1</item>
+        <item name="colorPrimaryVariant">@color/theme5Color2</item>
+        <item name="colorOnPrimary">@color/theme5Color3</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/theme5Color4</item>
+        <item name="colorSecondaryVariant">@color/theme5Color5</item>
+        <item name="colorOnSecondary">@color/theme5Color1</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">@color/theme5Color2</item>
+        <!-- BottomNavigationView -->
+        <item name="itemTextColor">@color/theme5Color5</item>
+    </style>
+
+    <style name="Theme6" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/theme6Color1</item>
+        <item name="colorPrimaryVariant">@color/theme6Color2</item>
+        <item name="colorOnPrimary">@color/theme6Color3</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/theme6Color4</item>
+        <item name="colorSecondaryVariant">@color/theme6Color5</item>
+        <item name="colorOnSecondary">@color/theme6Color1</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">@color/theme6Color2</item>
+        <!-- BottomNavigationView -->
+        <item name="itemTextColor">@color/theme6Color5</item>
+    </style>
 </resources>

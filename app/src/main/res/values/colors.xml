@@ -38,11 +38,25 @@
     <color name="theme3Color4">#797596</color>
     <color name="theme3Color5">#0B1D51</color>
 
-    <!-- theme2 -->
+    <!-- theme4 -->
     <color name="theme4Color1">#F4E409</color>
     <color name="theme4Color2">#EEBA0B</color>
     <color name="theme4Color3">#C36F09</color>
     <color name="theme4Color4">#A63C06</color>
     <color name="theme4Color5">#710000</color>
+
+    <!-- theme5 -->
+    <color name="theme5Color1">#BCC4DB</color>
+    <color name="theme5Color2">#C0A9B0</color>
+    <color name="theme5Color3">#7880B5</color>
+    <color name="theme5Color4">#6987C9</color>
+    <color name="theme5Color5">#6BBAEC</color>
+
+    <!-- theme6 -->
+    <color name="theme6Color1">#DCCCA3</color>
+    <color name="theme6Color2">#824C71</color>
+    <color name="theme6Color3">#4A2545</color>
+    <color name="theme6Color4">#000001</color>
+    <color name="theme6Color5">#90AA86</color>
 
 </resources>

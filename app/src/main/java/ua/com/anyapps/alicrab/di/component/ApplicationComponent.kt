@@ -1,6 +1,7 @@
 package ua.com.anyapps.alicrab.di.component
 
 import dagger.Component
+import ua.com.anyapps.alicrab.MainActivity
 import ua.com.anyapps.alicrab.di.module.AppModule
 import ua.com.anyapps.alicrab.di.module.SharedPreferencesModule
 import ua.com.anyapps.alicrab.repository.SharedPreferencesRepositoryImpl
@@ -14,4 +15,5 @@ import javax.inject.Singleton
 )
 interface ApplicationComponent {
     fun inject(into: SharedPreferencesRepositoryImpl)
+    fun inject(into: MainActivity)
 }

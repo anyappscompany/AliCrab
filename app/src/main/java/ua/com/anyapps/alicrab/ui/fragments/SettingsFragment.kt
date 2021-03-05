@@ -8,19 +8,65 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.lifecycle.Observer
+import androidx.preference.ListPreference
+import androidx.preference.Preference
+import androidx.preference.PreferenceFragmentCompat
 import ua.com.anyapps.alicrab.R
 import ua.com.anyapps.alicrab.viewmodel.SharedPreferencesViewModel
+import java.util.ArrayList
 
-class SettingsFragment : Fragment() {
+class SettingsFragment : PreferenceFragmentCompat() {
 
     private lateinit var sharedPreferencesViewModel: SharedPreferencesViewModel
-    private var currentTheme = THEME0
+    private var appThemePreference: ListPreference? = null
+
+    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
+        setPreferencesFromResource(R.xml.root_preferences, rootKey)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        setupViewModel()
-        currentTheme = PreferenceManager.getDefaultSharedPreferences(requireContext()).getInt(KEY_THEME, THEME0)
         super.onCreate(savedInstanceState)
+
+        setupViewModel()
+
+        fillPreferences()
+
+        appThemePreference = preferenceManager.findPreference<Preference>(getString(R.string.preference_app_theme)) as ListPreference
+        appThemePreference?.onPreferenceChangeListener = Preference.OnPreferenceChangeListener { preference, newValue ->
+            sharedPreferencesViewModel.setCurrentTheme(newValue.toString().toInt()).observe(this, Observer {
+                Log.d("debapp", "Selected theme: ${it}")
+                requireContext().theme.applyStyle(it, true)
+                activity?.recreate()
+            })
+            true
+        }
     }
+
+    private fun setupViewModel(){
+        sharedPreferencesViewModel = SharedPreferencesViewModel()
+    }
+
+    private fun fillPreferences(){
+        val listPreference = findPreference<ListPreference>(getString(R.string.preference_app_theme))
+        val entries = arrayOf<CharSequence>("s1", "s2")
+        //val entryValues = arrayOf<CharSequence>("0", "1")
+
+        listPreference?.entries = requireContext().resources.getStringArray(R.array.appThemesOptions)
+
+        val entryValues = requireContext().resources.getStringArray(R.array.appThemesValues)
+        val entryValues2 = ArrayList<CharSequence>()
+
+        for(i in 0..entryValues.size-1){
+            entryValues2.add(resources.getIdentifier(entryValues[i], "style", requireContext().packageName).toString())
+        }
+
+        listPreference?.entryValues = entryValues2.toTypedArray()
+        listPreference?.setValueIndex(2)
+    }
+
+    /*
+
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -46,14 +92,14 @@ class SettingsFragment : Fragment() {
 
 
     companion object {
-        /**
+        *//**
          * Use this factory method to create a new instance of
          * this fragment using the provided parameters.
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
          * @return A new instance of fragment SettingsFragment.
-         */
+         *//*
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
@@ -68,8 +114,8 @@ class SettingsFragment : Fragment() {
     }
 
     protected fun setAppTheme(themeId: Int){
-        /*setTheme(currentTheme)
-        getContext().getTheme().applyStyle(styleId, true);*/
+        *//*setTheme(currentTheme)
+        getContext().getTheme().applyStyle(styleId, true);*//*
         requireContext().theme.applyStyle(currentTheme, true)
     }
 
@@ -92,5 +138,5 @@ class SettingsFragment : Fragment() {
         THEME3 -> R.color.theme3Color1
         THEME4 -> R.color.theme4Color1
         else -> android.R.color.background_light
-    }
+    }*/
 }

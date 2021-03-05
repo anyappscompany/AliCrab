@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Theme Preferences -->
+    <string-array name="appThemesOptions">
+        <item>Great Wall of China</item>
+        <item>Christ the Redeemer</item>
+        <item>Machu Picchu</item>
+        <item>Chichen Itza</item>
+        <item>The Roman Colosseum</item>
+        <item>Taj Mahal</item>
+        <item>Petra</item>
+    </string-array>
+
+    <string name="app_themes_default">Theme0</string>
+    <string-array name="appThemesValues">
+        <item>Theme0</item>
+        <item>Theme1</item>
+        <item>Theme2</item>
+        <item>Theme3</item>
+        <item>Theme4</item>
+        <item>Theme5</item>
+        <item>Theme6</item>
+    </string-array>
+</resources>

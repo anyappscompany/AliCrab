@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="preference_app_theme" translatable="false">preference_app_theme</string>
+</resources>

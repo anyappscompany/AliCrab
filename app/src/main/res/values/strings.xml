@@ -5,4 +5,9 @@
     <string name="nav_top_btn_text">TOP</string>
     <string name="nav_history_btn_text">History</string>
     <string name="nav_settings_btn_text">Settings</string>
+
+    <!-- Preferences -->
+    <!-- Appearence -->
+    <string name="preferences_appearence_title">Appearence</string>
+    <string name="preferences_app_theme">App theme</string>
 </resources>

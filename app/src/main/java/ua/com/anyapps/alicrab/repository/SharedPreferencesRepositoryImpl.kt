@@ -13,12 +13,6 @@ import javax.inject.Inject
 
 
 class SharedPreferencesRepositoryImpl: SharedPreferencesRepository {
-    private val KEY_THEME = "Theme"
-    private val THEME0 = R.style.Theme0
-    private val THEME1 = R.style.Theme1
-    private val THEME2 = R.style.Theme2
-    private val THEME3 = R.style.Theme3
-    private val THEME4 = R.style.Theme4
 
     @Inject
     lateinit var context: Context
@@ -30,11 +24,11 @@ class SharedPreferencesRepositoryImpl: SharedPreferencesRepository {
         App.applicationComponent.inject(this)
     }
 
-    override fun getCurrentTheme(): Int {
-        return sharedPreferences.getInt(KEY_THEME, THEME0)
+    override fun getCurrentTheme(default: Int): Int {
+        return sharedPreferences.getInt(context.getString(R.string.preference_app_theme), default)
     }
 
     override fun setCurrentTheme(theme: Int) {
-        sharedPreferences.edit().putInt(KEY_THEME, theme).apply()
+        sharedPreferences.edit().putInt(context.getString(R.string.preference_app_theme), theme).apply()
     }
 }
