@@ -59,4 +59,11 @@
     <color name="theme6Color4">#000001</color>
     <color name="theme6Color5">#90AA86</color>
 
+    <!-- theme7 -->
+    <color name="theme7Color1">#177E89</color>
+    <color name="theme7Color2">#084C61</color>
+    <color name="theme7Color3">#DB3A34</color>
+    <color name="theme7Color4">#FFC857</color>
+    <color name="theme7Color5">#323031</color>
+
 </resources>

@@ -25,10 +25,10 @@ class SharedPreferencesRepositoryImpl: SharedPreferencesRepository {
     }
 
     override fun getCurrentTheme(default: Int): Int {
-        return sharedPreferences.getInt(context.getString(R.string.preference_app_theme), default)
+        return context.resources.getIdentifier(sharedPreferences.getString(context.resources.getString(R.string.preference_app_theme), "Theme0"), "style", context.packageName)
     }
 
-    override fun setCurrentTheme(theme: Int) {
-        sharedPreferences.edit().putInt(context.getString(R.string.preference_app_theme), theme).apply()
+    override fun setCurrentTheme(theme: String) {
+        sharedPreferences.edit().putString(context.getString(R.string.preference_app_theme), theme).apply()
     }
 }

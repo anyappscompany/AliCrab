@@ -118,4 +118,19 @@
         <!-- BottomNavigationView -->
         <item name="itemTextColor">@color/theme6Color5</item>
     </style>
+
+    <style name="Theme7" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/theme7Color1</item>
+        <item name="colorPrimaryVariant">@color/theme7Color2</item>
+        <item name="colorOnPrimary">@color/theme7Color3</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/theme7Color4</item>
+        <item name="colorSecondaryVariant">@color/theme7Color5</item>
+        <item name="colorOnSecondary">@color/theme7Color1</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">@color/theme7Color2</item>
+        <!-- BottomNavigationView -->
+        <item name="itemTextColor">@color/theme7Color5</item>
+    </style>
 </resources>

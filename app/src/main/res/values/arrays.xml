@@ -2,6 +2,7 @@
 <resources>
     <!-- Theme Preferences -->
     <string-array name="appThemesOptions">
+        <item>Default</item>
         <item>Great Wall of China</item>
         <item>Christ the Redeemer</item>
         <item>Machu Picchu</item>
@@ -20,5 +21,6 @@
         <item>Theme4</item>
         <item>Theme5</item>
         <item>Theme6</item>
+        <item>Theme7</item>
     </string-array>
 </resources>

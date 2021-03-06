@@ -13,6 +13,6 @@ class SharedPreferencesModule() {
     @Singleton
     @Provides
     fun providesSharedPreferences(context: Context): SharedPreferences{
-        return context.getSharedPreferences("pref", MODE_PRIVATE)
+        return context.getSharedPreferences("${context.packageName}_preferences", MODE_PRIVATE)
     }
 }

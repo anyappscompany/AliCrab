@@ -30,11 +30,12 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
         setupViewModel()
 
-        fillPreferences()
+        /*fillPreferences()*/
 
         appThemePreference = preferenceManager.findPreference<Preference>(getString(R.string.preference_app_theme)) as ListPreference
         appThemePreference?.onPreferenceChangeListener = Preference.OnPreferenceChangeListener { preference, newValue ->
-            sharedPreferencesViewModel.setCurrentTheme(newValue.toString().toInt()).observe(this, Observer {
+            Log.d("debapp", "Old: ${preference}, NewValue: ${newValue}")
+            sharedPreferencesViewModel.setCurrentTheme(resources.getIdentifier(newValue.toString(), "style", requireContext().packageName), newValue.toString()).observe(this, Observer {
                 Log.d("debapp", "Selected theme: ${it}")
                 requireContext().theme.applyStyle(it, true)
                 activity?.recreate()

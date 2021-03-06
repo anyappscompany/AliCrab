@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 
 interface SharedPreferencesRepository {
     fun getCurrentTheme(default: Int): Int
-    fun setCurrentTheme(theme: Int)
+    fun setCurrentTheme(theme: String)
 
     //
 }
