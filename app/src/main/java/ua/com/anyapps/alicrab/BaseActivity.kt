@@ -13,10 +13,7 @@ abstract class BaseActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val prefrenceAppName = getResources().getString(R.string.settings_app_theme)
-        val appThemeDefault = getResources().getString(R.string.app_themes_default)
-        val themeInt = resources.getIdentifier(appThemeDefault, "style", packageName)
-
-        setTheme(resources.getIdentifier(sharedPreferences.getString(prefrenceAppName, "Theme0"), "style", packageName))
+        // Применить текущую тему
+        setTheme(resources.getIdentifier(sharedPreferences.getString(getResources().getString(R.string.settings_app_theme), resources.getStringArray(R.array.appThemesValues).get(0)), "style", packageName))
     }
 }
