@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Theme Preferences -->
+    <!-- Theme Settings -->
     <string-array name="appThemesOptions">
         <item>Default</item>
         <item>Great Wall of China</item>

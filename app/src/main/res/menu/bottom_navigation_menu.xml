@@ -13,9 +13,21 @@
         android:orderInCategory = "100"
         />-->
     <item
-        android:id = "@+id/topFragment"
-        android:title = "@string/nav_top_btn_text"
-        android:icon="@drawable/ic_top"
+        android:id = "@+id/homeFragment"
+        android:title = "@string/nav_home_btn_text"
+        android:icon="@drawable/ic_home"
+        android:orderInCategory = "100"
+        />
+    <item
+        android:id = "@+id/browseFragment"
+        android:title = "@string/nav_browse_btn_text"
+        android:icon="@drawable/ic_browse"
+        android:orderInCategory = "100"
+        />
+    <item
+        android:id = "@+id/chartFragment"
+        android:title = "@string/nav_chart_btn_text"
+        android:icon="@drawable/ic_chart"
         android:orderInCategory = "100"
         />
     <item

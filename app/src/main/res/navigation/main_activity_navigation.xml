@@ -3,20 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_activity_navigation"
-    app:startDestination="@id/topFragment">
+    app:startDestination="@id/homeFragment">
 
     <fragment
-        android:id="@+id/topFragment"
-        android:name="ua.com.anyapps.alicrab.ui.fragments.TopFragment"
-        android:label="fragment_topn"
-        tools:layout="@layout/fragment_top" >
-        <!--<argument
-            android:name="act"
-            app:argType="integer"
-            android:defaultValue="0" />-->
+        android:id="@+id/homeFragment"
+        android:name="ua.com.anyapps.alicrab.ui.fragments.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/action_topFragment_to_historyFragment"
-            app:destination="@id/historyFragment" />
+            android:id="@+id/action_homeFragment_to_browseFragment"
+            app:destination="@id/browseFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/browseFragment"
+        android:name="ua.com.anyapps.alicrab.ui.fragments.BrowseFragment"
+        android:label="fragment_browse"
+        tools:layout="@layout/fragment_browse" >
+        <action
+            android:id="@+id/action_browseFragment_to_chartFragment"
+            app:destination="@id/chartFragment" />
     </fragment>
     <fragment
         android:id="@+id/historyFragment"
@@ -32,4 +37,14 @@
         android:name="ua.com.anyapps.alicrab.ui.fragments.SettingsFragment"
         android:label="fragment_history"
         tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/chartFragment"
+        android:name="ua.com.anyapps.alicrab.ui.fragments.ChartFragment"
+        android:label="fragment_chart"
+        tools:layout="@layout/fragment_chart" >
+        <action
+            android:id="@+id/action_chartFragment_to_historyFragment"
+            app:destination="@id/historyFragment" />
+    </fragment>
+
 </navigation>

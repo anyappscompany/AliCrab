@@ -9,7 +9,7 @@ import ua.com.anyapps.alicrab.di.App
 import ua.com.anyapps.alicrab.repository.SharedPreferencesRepository
 import ua.com.anyapps.alicrab.repository.SharedPreferencesRepositoryImpl
 
-class SharedPreferencesViewModel: ViewModel() {
+class SettingsViewModel: ViewModel() {
 
     //private var currentTheme = 0
 

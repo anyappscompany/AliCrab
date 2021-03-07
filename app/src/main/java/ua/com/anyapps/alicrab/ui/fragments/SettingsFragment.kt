@@ -1,24 +1,18 @@
 package ua.com.anyapps.alicrab.ui.fragments
 
 import android.os.Bundle
-import android.preference.PreferenceManager
 import android.util.Log
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.Button
 import androidx.lifecycle.Observer
 import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import ua.com.anyapps.alicrab.R
-import ua.com.anyapps.alicrab.viewmodel.SharedPreferencesViewModel
+import ua.com.anyapps.alicrab.viewmodel.SettingsViewModel
 import java.util.ArrayList
 
 class SettingsFragment : PreferenceFragmentCompat() {
 
-    private lateinit var sharedPreferencesViewModel: SharedPreferencesViewModel
+    private lateinit var sharedPreferencesViewModel: SettingsViewModel
     private var appThemePreference: ListPreference? = null
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
@@ -32,7 +26,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
         /*fillPreferences()*/
 
-        appThemePreference = preferenceManager.findPreference<Preference>(getString(R.string.preference_app_theme)) as ListPreference
+        appThemePreference = preferenceManager.findPreference<Preference>(getString(R.string.settings_app_theme)) as ListPreference
         appThemePreference?.onPreferenceChangeListener = Preference.OnPreferenceChangeListener { preference, newValue ->
             Log.d("debapp", "Old: ${preference}, NewValue: ${newValue}")
             sharedPreferencesViewModel.setCurrentTheme(resources.getIdentifier(newValue.toString(), "style", requireContext().packageName), newValue.toString()).observe(this, Observer {
@@ -45,11 +39,11 @@ class SettingsFragment : PreferenceFragmentCompat() {
     }
 
     private fun setupViewModel(){
-        sharedPreferencesViewModel = SharedPreferencesViewModel()
+        sharedPreferencesViewModel = SettingsViewModel()
     }
 
     private fun fillPreferences(){
-        val listPreference = findPreference<ListPreference>(getString(R.string.preference_app_theme))
+        val listPreference = findPreference<ListPreference>(getString(R.string.settings_app_theme))
         val entries = arrayOf<CharSequence>("s1", "s2")
         //val entryValues = arrayOf<CharSequence>("0", "1")
 
