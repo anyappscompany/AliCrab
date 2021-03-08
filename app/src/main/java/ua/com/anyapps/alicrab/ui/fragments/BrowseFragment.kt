@@ -1,10 +1,12 @@
 package ua.com.anyapps.alicrab.ui.fragments
 
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import ua.com.anyapps.alicrab.R
@@ -38,15 +40,31 @@ class BrowseFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_browse, container, false)
         // Inflate the layout for this fragment
-        val myWebView: WebView = view.findViewById(R.id.vwBrowser)
-        myWebView.webViewClient = object : WebViewClient() {
-            override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
-                //view?.loadUrl("https://stackoverflow.com/questions/60641759/how-to-open-webview-links-within-app-android-kotlin")
-                return true
-            }
+        val webView: WebView = view.findViewById(R.id.vwBrowser)
+        webView.loadUrl("https://m.aliexpress.com/")
+        webView.settings.javaScriptEnabled = true
+
+        webView.settings.setJavaScriptEnabled(true);
+        webView.settings.setLoadWithOverviewMode(true);
+        webView.settings.setUseWideViewPort(true);
+        webView.settings.setSupportZoom(true);
+        webView.settings.setBuiltInZoomControls(false);
+        webView.settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+        webView.settings.setCacheMode(WebSettings.LOAD_NO_CACHE);
+        webView.settings.setDomStorageEnabled(true);
+        webView.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
+        webView.setScrollbarFadingEnabled(true);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            webView.setLayerType(View.LAYER_TYPE_HARDWARE, null);
+        } else {
+            webView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
         }
 
-        myWebView.loadUrl("https://www.amazon.com/")
+        webView.webViewClient = object : WebViewClient() {
+            override fun onPageFinished(view: WebView?, url: String?) {
+                super.onPageFinished(view, url)
+            }
+        }
 
         return view
     }
