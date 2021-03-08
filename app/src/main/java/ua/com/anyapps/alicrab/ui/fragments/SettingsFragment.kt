@@ -18,7 +18,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        appThemePreference = preferenceManager.findPreference<Preference>(getString(R.string.settings_app_theme)) as ListPreference
+        appThemePreference = preferenceManager.findPreference<ListPreference>(getString(R.string.settings_app_theme))
 
         setupViewModel()
         initObservers()
@@ -35,7 +35,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
     private fun initObservers(){
         // применить тему
-        sharedPreferencesViewModel.currentTheme.observe(this, Observer {
+        sharedPreferencesViewModel.currentTheme.observe(requireActivity(), Observer {
             requireContext().theme.applyStyle(it, true)
             activity?.recreate()
         })
@@ -43,9 +43,11 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
     private fun initListeners(){
         // тема изменилась
-        appThemePreference?.onPreferenceChangeListener = Preference.OnPreferenceChangeListener { preference, newValue ->
-            sharedPreferencesViewModel.setCurrentTheme(newValue.toString())
-            true
+        appThemePreference?.let {
+            it.onPreferenceChangeListener = Preference.OnPreferenceChangeListener { preference, newValue ->
+                sharedPreferencesViewModel.setCurrentTheme(newValue.toString())
+                true
+            }
         }
     }
 }

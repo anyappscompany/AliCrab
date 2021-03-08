@@ -17,29 +17,34 @@
         android:title = "@string/nav_home_btn_text"
         android:icon="@drawable/ic_home"
         android:orderInCategory = "100"
+        android:contentDescription="@string/nav_home_btn_text"
         />
     <item
         android:id = "@+id/browseFragment"
         android:title = "@string/nav_browse_btn_text"
         android:icon="@drawable/ic_browse"
         android:orderInCategory = "100"
+        android:contentDescription="@string/nav_browse_btn_text"
         />
     <item
         android:id = "@+id/chartFragment"
         android:title = "@string/nav_chart_btn_text"
         android:icon="@drawable/ic_chart"
         android:orderInCategory = "100"
+        android:contentDescription="@string/nav_chart_btn_text"
         />
     <item
         android:id = "@+id/historyFragment"
         android:title = "@string/nav_history_btn_text"
         android:icon="@drawable/ic_history"
         android:orderInCategory = "100"
+        android:contentDescription="@string/nav_history_btn_text"
         />
     <item
         android:id = "@+id/settingsFragment"
         android:title = "@string/nav_settings_btn_text"
         android:icon="@drawable/ic_settings"
         android:orderInCategory = "100"
+        android:contentDescription="@string/nav_settings_btn_text"
         />
 </menu>

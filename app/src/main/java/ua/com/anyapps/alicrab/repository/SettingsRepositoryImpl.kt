@@ -7,7 +7,7 @@ import ua.com.anyapps.alicrab.di.App
 import javax.inject.Inject
 
 
-class SharedPreferencesRepositoryImpl: SharedPreferencesRepository {
+class SettingsRepositoryImpl: SettingsRepository {
 
     @Inject
     lateinit var context: Context

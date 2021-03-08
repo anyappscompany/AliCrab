@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="settings_app_theme" translatable="false">settings_app_theme</string>
+    <string name="start_url">https://m.aliexpress.com/</string>
 </resources>
