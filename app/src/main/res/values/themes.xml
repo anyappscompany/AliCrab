@@ -133,4 +133,10 @@
         <!-- BottomNavigationView -->
         <item name="itemTextColor">@color/theme7Color5</item>
     </style>
+
+    <style name="SplashScreenTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_screen_background</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
 </resources>
