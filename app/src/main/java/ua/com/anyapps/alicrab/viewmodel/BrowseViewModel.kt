@@ -20,7 +20,23 @@ class BrowseViewModel: ViewModel() {
     init {
         _lastUrl.value = repository.getStartUrl()
     }
-    fun saveLastUrl(lastUrl: String){
-        repository.saveLastUrl(lastUrl)
+    fun saveLastUrl(lastUrl: String, html: String){
+        repository.saveLastUrl(lastUrl, html)
+    }
+
+    fun navHomeClick(){
+        Log.d("debapp", "HOME CLICK")
+    }
+
+    fun navBackClick(){
+        Log.d("debapp", "BACK CLICK")
+    }
+
+    fun navForwardClick(){
+        Log.d("debapp", "FORWARD CLICK")
+    }
+
+    fun navRefreshClick(){
+        Log.d("debapp", "REFRESH CLICK")
     }
 }

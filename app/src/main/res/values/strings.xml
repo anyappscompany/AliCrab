@@ -12,4 +12,10 @@
     <!-- Appearence -->
     <string name="settings_appearence_title">Appearence</string>
     <string name="settings_app_theme_title">App theme</string>
+    
+    <!-- Browser -->
+    <string name="browser_menu_item_home">Home</string>
+    <string name="browser_menu_item_back">Back</string>
+    <string name="browser_menu_item_forward">Forward</string>
+    <string name="browser_menu_item_refresh">Refresh</string>
 </resources>

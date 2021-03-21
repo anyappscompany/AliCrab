@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id = "@+id/browser_menu_item_home"
+        android:title = "@string/browser_menu_item_home"
+        android:icon="@drawable/ic_browser_home"
+        android:orderInCategory = "100"
+        android:contentDescription="@string/browser_menu_item_home"
+        app:showAsAction="ifRoom"
+        />
+    <item
+        android:id = "@+id/browser_menu_item_back"
+        android:title = "@string/browser_menu_item_back"
+        android:icon="@drawable/ic_browser_back"
+        android:orderInCategory = "100"
+        android:contentDescription="@string/browser_menu_item_back"
+        app:showAsAction="ifRoom"
+        />
+    <item
+        android:id = "@+id/browser_menu_item_forward"
+        android:title = "@string/browser_menu_item_forward"
+        android:icon="@drawable/ic_browser_forward"
+        android:orderInCategory = "100"
+        android:contentDescription="@string/browser_menu_item_forward"
+        app:showAsAction="ifRoom"
+        />
+    <item
+        android:id = "@+id/browser_menu_item_refresh"
+        android:title = "@string/browser_menu_item_refresh"
+        android:icon="@drawable/ic_browser_refresh"
+        android:orderInCategory = "100"
+        android:contentDescription="@string/browser_menu_item_refresh"
+        app:showAsAction="ifRoom"
+        />
+
+</menu>

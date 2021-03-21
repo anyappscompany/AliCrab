@@ -14,7 +14,11 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="Theme0" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="BaseTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!---->
+    </style>
+
+    <style name="Theme0" parent="BaseTheme">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/theme0Color1</item>
         <item name="colorPrimaryVariant">@color/theme0Color2</item>
@@ -29,7 +33,7 @@
         <item name="itemTextColor">@color/theme0Color5</item>
     </style>
 
-    <style name="Theme1" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme1" parent="BaseTheme">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/theme1Color1</item>
         <item name="colorPrimaryVariant">@color/theme1Color2</item>
@@ -44,7 +48,7 @@
         <item name="itemTextColor">@color/theme1Color5</item>
     </style>
 
-    <style name="Theme2" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme2" parent="BaseTheme">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/theme2Color1</item>
         <item name="colorPrimaryVariant">@color/theme2Color2</item>
@@ -59,7 +63,7 @@
         <item name="itemTextColor">@color/theme2Color5</item>
     </style>
 
-    <style name="Theme3" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme3" parent="BaseTheme">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/theme3Color1</item>
         <item name="colorPrimaryVariant">@color/theme3Color2</item>
@@ -74,7 +78,7 @@
         <item name="itemTextColor">@color/theme3Color5</item>
     </style>
 
-    <style name="Theme4" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme4" parent="BaseTheme">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/theme4Color1</item>
         <item name="colorPrimaryVariant">@color/theme4Color2</item>
@@ -89,7 +93,7 @@
         <item name="itemTextColor">@color/theme4Color5</item>
     </style>
 
-    <style name="Theme5" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme5" parent="BaseTheme">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/theme5Color1</item>
         <item name="colorPrimaryVariant">@color/theme5Color2</item>
@@ -104,7 +108,7 @@
         <item name="itemTextColor">@color/theme5Color5</item>
     </style>
 
-    <style name="Theme6" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme6" parent="BaseTheme">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/theme6Color1</item>
         <item name="colorPrimaryVariant">@color/theme6Color2</item>
@@ -119,7 +123,7 @@
         <item name="itemTextColor">@color/theme6Color5</item>
     </style>
 
-    <style name="Theme7" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme7" parent="BaseTheme">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/theme7Color1</item>
         <item name="colorPrimaryVariant">@color/theme7Color2</item>

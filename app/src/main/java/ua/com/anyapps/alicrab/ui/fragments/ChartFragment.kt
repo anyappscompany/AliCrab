@@ -1,11 +1,16 @@
 package ua.com.anyapps.alicrab.ui.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.Toolbar
+import androidx.fragment.app.activityViewModels
+import com.google.android.material.appbar.MaterialToolbar
 import ua.com.anyapps.alicrab.R
+import ua.com.anyapps.alicrab.viewmodel.SharedViewModel
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -22,7 +27,11 @@ class ChartFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    private var topAppBar: MaterialToolbar? = null
+
+    private val sharedVM: SharedViewModel by activityViewModels()
+
+    override fun onCreate(savedInstanceState: Bundle?) { Log.d("debapp", "VM data:" + sharedVM.getSelectedNews().toString())
         super.onCreate(savedInstanceState)
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
@@ -30,12 +39,27 @@ class ChartFragment : Fragment() {
         }
     }
 
+    private fun menuListener(): Toolbar.OnMenuItemClickListener {
+        return Toolbar.OnMenuItemClickListener{
+            true
+        }
+    }
+
+    fun setupMenu(){
+        topAppBar?.menu?.clear()
+        topAppBar?.inflateMenu(R.menu.default_menu)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val view = inflater.inflate(R.layout.fragment_browse, container, false)
+        topAppBar = requireActivity().findViewById(R.id.topAppBar)
+
+        setupMenu()
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_chart, container, false)
+        return view
     }
 
     companion object {

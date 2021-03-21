@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.android.material.appbar.MaterialToolbar
 import ua.com.anyapps.alicrab.R
 
 // TODO: Rename parameter arguments, choose names that match
@@ -22,6 +23,8 @@ class HomeFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    private var topAppBar: MaterialToolbar? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -30,10 +33,21 @@ class HomeFragment : Fragment() {
         }
     }
 
+    fun setupMenu(){
+        topAppBar?.menu?.clear()
+        topAppBar?.inflateMenu(R.menu.default_menu)
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        val view = inflater.inflate(R.layout.fragment_browse, container, false)
+
+        topAppBar = requireActivity().findViewById(R.id.topAppBar)
+
+        setupMenu()
+
+        return view
     }
 
     companion object {

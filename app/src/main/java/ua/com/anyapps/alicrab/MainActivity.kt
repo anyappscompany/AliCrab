@@ -1,15 +1,14 @@
 package ua.com.anyapps.alicrab
 
-import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
+import android.view.Menu
+import androidx.activity.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import ua.com.anyapps.alicrab.databinding.ActivityMainBinding
 import ua.com.anyapps.alicrab.di.App
-import javax.inject.Inject
+import ua.com.anyapps.alicrab.viewmodel.SharedViewModel
 
 
 class MainActivity : BaseActivity() {
@@ -17,6 +16,8 @@ class MainActivity : BaseActivity() {
     private lateinit var host: NavHostFragment
     private lateinit var navController: NavController
     private lateinit var bottomNavigationView: BottomNavigationView
+
+    private val viewModel: SharedViewModel by viewModels()
 
     init {
         App.applicationComponent.inject(this)
@@ -35,5 +36,9 @@ class MainActivity : BaseActivity() {
     private fun setupNavHostFragmentNavigation(){
         navController = host.navController
         bottomNavigationView.setupWithNavController(navController)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        return super.onCreateOptionsMenu(menu)
     }
 }
