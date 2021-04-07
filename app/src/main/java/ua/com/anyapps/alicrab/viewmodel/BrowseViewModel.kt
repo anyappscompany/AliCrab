@@ -6,9 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ua.com.anyapps.alicrab.repository.BrowseRepositoryImpl
 import ua.com.anyapps.alicrab.repository.BrowseReposotiry
-import ua.com.anyapps.alicrab.repository.SettingsRepository
-import ua.com.anyapps.alicrab.repository.SettingsRepositoryImpl
-import ua.com.anyapps.alicrab.utils.Utils
 
 class BrowseViewModel: ViewModel() {
 
@@ -20,8 +17,8 @@ class BrowseViewModel: ViewModel() {
     init {
         _lastUrl.value = repository.getStartUrl()
     }
-    fun saveLastUrl(lastUrl: String, html: String){
-        repository.saveLastUrl(lastUrl, html)
+    fun saveLastUrl(lastUrl: String){
+        repository.saveLastUrl(lastUrl)
     }
 
     fun navHomeClick(){
@@ -39,4 +36,13 @@ class BrowseViewModel: ViewModel() {
     fun navRefreshClick(){
         Log.d("debapp", "REFRESH CLICK")
     }
+
+
+    /*private val loading: MutableLiveData<Boolean> = MutableLiveData()
+    fun getLoading(): LiveData<Boolean> {
+        return loading
+    }
+    fun setLoading(b: Boolean){
+        loading.value = b
+    }*/
 }

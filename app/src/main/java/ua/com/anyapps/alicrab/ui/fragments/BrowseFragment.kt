@@ -1,20 +1,24 @@
 package ua.com.anyapps.alicrab.ui.fragments
 
+import android.content.Context
 import android.graphics.Bitmap
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.*
-import android.webkit.WebChromeClient
+import android.webkit.*
+import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
-import android.webkit.WebSettings
-import android.webkit.WebView
-import android.webkit.WebViewClient
 import android.widget.ProgressBar
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import com.google.android.material.appbar.MaterialToolbar
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import ua.com.anyapps.alicrab.R
+import ua.com.anyapps.alicrab.databinding.FragmentBrowseBinding
+import ua.com.anyapps.alicrab.dialogs.ChartDialog
+import ua.com.anyapps.alicrab.utils.Utils
 import ua.com.anyapps.alicrab.viewmodel.BrowseViewModel
 import ua.com.anyapps.alicrab.viewmodel.SharedViewModel
 
@@ -22,15 +26,22 @@ import ua.com.anyapps.alicrab.viewmodel.SharedViewModel
 class BrowseFragment : Fragment() {
 
     private lateinit var browseViewModel: BrowseViewModel
-
-    private var webView: WebView? = null
     private var topAppBar: MaterialToolbar? = null
 
-    private val sharedVM: SharedViewModel by activityViewModels()
 
-    private var pbProgress: ProgressBar? = null
+    private var binding: FragmentBrowseBinding? = null
+
+    private lateinit var sharedVM: SharedViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        val tmpSharedVM: SharedViewModel by activityViewModels<SharedViewModel>()
+        sharedVM = tmpSharedVM
     }
 
     fun setupMenu(){
@@ -41,10 +52,24 @@ class BrowseFragment : Fragment() {
     private fun menuListener(): Toolbar.OnMenuItemClickListener {
         return Toolbar.OnMenuItemClickListener{
             when(it.itemId){
-                R.id.browser_menu_item_home -> browseViewModel.navHomeClick()
-                R.id.browser_menu_item_back -> browseViewModel.navBackClick()
-                R.id.browser_menu_item_forward -> browseViewModel.navForwardClick()
-                R.id.browser_menu_item_refresh -> browseViewModel.navRefreshClick()
+                R.id.browser_menu_item_home -> {
+                    browseViewModel.navHomeClick()
+                    binding?.vwBrowser?.loadUrl(resources.getString(R.string.start_url))
+                }
+                R.id.browser_menu_item_back -> {
+                    browseViewModel.navBackClick()
+                    if(binding?.vwBrowser?.canGoBack() == true)
+                        binding?.vwBrowser?.goBack()
+                }
+                R.id.browser_menu_item_forward -> {
+                    browseViewModel.navForwardClick()
+                    if(binding?.vwBrowser?.canGoForward() == true)
+                        binding?.vwBrowser?.goForward()
+                }
+                R.id.browser_menu_item_refresh -> {
+                    browseViewModel.navRefreshClick()
+                    binding?.vwBrowser?.reload()
+                }
             }
             true
         }
@@ -53,24 +78,41 @@ class BrowseFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_browse, container, false)
 
-        webView = view.findViewById(R.id.vwBrowser)
-        pbProgress = view.findViewById(R.id.pbProgress)
-
         topAppBar = requireActivity().findViewById(R.id.topAppBar)
-
-        setupViewModel()
-
-        setupWebView()
-        setupMenu()
-
-        initObservers()
-        initListeners()
-
+        // Inflate the layout for this fragment
         return view
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding = FragmentBrowseBinding.bind(view)
+
+        setupViewModel()
+        setupMenu()
+
+        setupWebView()
+        initObservers()
+        initListeners()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
+    }
+
+    override fun onStart() {
+        super.onStart()
+        binding?.fabBrowse?.visibility = View.VISIBLE
+    }
+
+    override fun onStop() {
+        super.onStop()
+        binding?.fabBrowse?.visibility = View.GONE
+    }
+
     private fun setupWebView(){
-        webView?.let {
+        binding?.vwBrowser?.let {
             it.settings.javaScriptEnabled = true
             it.settings.setJavaScriptEnabled(true);
             it.settings.setLoadWithOverviewMode(true);
@@ -91,48 +133,69 @@ class BrowseFragment : Fragment() {
     }
 
     private fun initObservers(){
+        // начинатб с последней страницы
         browseViewModel.lastUrl.observe(requireActivity(), Observer {
             // стартовая страница https://m.aliexpress.com/
-            webView?.loadUrl(it)
+            binding?.vwBrowser?.loadUrl(it)
         })
     }
 
     private fun initListeners(){
-        webView?.let {
+        binding?.vwBrowser?.let {
             it.webViewClient = object : WebViewClient() {
-                override fun onPageFinished(view: WebView?, url: String?) {
-                    super.onPageFinished(view, url)
-                    browseViewModel.saveLastUrl(url.toString(), "html11111111111111" получить html)
-                    pbProgress?.setVisibility(ProgressBar.GONE)
-                }
-
                 override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
                     super.onPageStarted(view, url, favicon)
-                    pbProgress?.setVisibility(ProgressBar.VISIBLE)
+                    binding?.fabBrowse?.isEnabled = false
+                }
+
+                override fun onPageFinished(view: WebView?, url: String?) {
+                    super.onPageFinished(view, url)
+                    // урл сохраняется для отображения последней посещённой страницы
+                    browseViewModel.saveLastUrl(url.toString())
+                    // и для передачи урла в фрагмент статистики
+                    sharedVM.setUrl(url.toString())
+
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                        view?.evaluateJavascript("(function() { return document.getElementsByTagName('html')[0].innerHTML; })();", ValueCallback<String?> { s ->
+                            if(Utils.isValidGoodPage(url.toString(), s)){
+                                binding?.fabBrowse?.isEnabled = true
+                            }
+                        })
+                    }
+                }
+
+                override fun onReceivedError(view: WebView?, errorCode: Int, description: String?, failingUrl: String?) {
+                    super.onReceivedError(view, errorCode, description, failingUrl)
+                    // при ошибка переход к статистике невозможен
+                    binding?.fabBrowse?.isEnabled = false
                 }
             }
 
             it.webChromeClient = object : WebChromeClient(){
                 override fun onProgressChanged(view: WebView?, newProgress: Int) {
-                    if(newProgress < 100 && pbProgress?.getVisibility() == ProgressBar.GONE){
-                        pbProgress?.setVisibility(ProgressBar.VISIBLE)
-                        //txtview.setVisibility(View.VISIBLE);
-                        //pbProgress?.progress = newProgress
-                    }
+                    binding?.pbProgress?.let {
+                        if (newProgress < 100 && binding?.pbProgress?.getVisibility() == ProgressBar.GONE) {
+                            binding?.pbProgress?.setVisibility(ProgressBar.VISIBLE)
+                        }
 
-                    pbProgress?.progress = newProgress
-                    if(newProgress == 100) {
-                        pbProgress?.setVisibility(ProgressBar.GONE);
-                        //txtview.setVisibility(View.GONE);
+                        binding?.pbProgress?.progress = newProgress
+                        if (newProgress == 100) {
+                            binding?.pbProgress?.setVisibility(ProgressBar.GONE)
+                        }
+                        super.onProgressChanged(view, newProgress)
                     }
-                    super.onProgressChanged(view, newProgress)
-                    pbProgress?.progress = newProgress
                 }
-
             }
         }
 
         topAppBar?.setOnMenuItemClickListener(menuListener())
+
+        binding?.fabBrowse?.setOnClickListener(View.OnClickListener {
+
+            val chartDialog: ChartDialog = ChartDialog().also {
+                it.show(requireActivity().supportFragmentManager, it.javaClass.simpleName)
+            }
+        })
     }
 
     private fun setupViewModel(){

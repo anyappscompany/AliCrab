@@ -1,11 +1,13 @@
 package ua.com.anyapps.alicrab.ui.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.activityViewModels
 import com.google.android.material.appbar.MaterialToolbar
@@ -29,13 +31,25 @@ class ChartFragment : Fragment() {
 
     private var topAppBar: MaterialToolbar? = null
 
-    private val sharedVM: SharedViewModel by activityViewModels()
+    lateinit var sharedVM: SharedViewModel
 
-    override fun onCreate(savedInstanceState: Bundle?) { Log.d("debapp", "VM data:" + sharedVM.getSelectedNews().toString())
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
+        }
+
+
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        val tmpSharedVM: SharedViewModel by activityViewModels<SharedViewModel>()
+        sharedVM = tmpSharedVM
+
+        sharedVM.getUrl().observe(requireActivity()) {
+            Log.d("debapp", "URL-007: ${it}")
         }
     }
 

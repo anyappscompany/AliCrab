@@ -1,14 +1,14 @@
 package ua.com.anyapps.alicrab.viewmodel
 
-import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class SharedViewModel: ViewModel() {
-    private val _selectedNews = MutableLiveData<String>()
+    private val _url = MutableLiveData<String>()
 
-    fun setSelectedNews(str: String) {
-        _selectedNews.value = str
+    fun setUrl(url: String) {
+        _url.value = url
     }
-    fun getSelectedNews() = _selectedNews.value
+    fun getUrl(): LiveData<String> = _url
 }

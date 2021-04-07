@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 class BrowseRepositoryImpl: BrowseReposotiry {
     val LAST_URL: String = "last_url"
-    val HTML: String = "html"
+    //val HTML: String = "html"
 
     @Inject
     lateinit var context: Context
@@ -26,8 +26,8 @@ class BrowseRepositoryImpl: BrowseReposotiry {
     }
 
     // последняя посещённая страница
-    override fun saveLastUrl(lastUrl: String, html: String) {
+    override fun saveLastUrl(lastUrl: String) {
         sharedPreferences.edit().putString(LAST_URL, lastUrl).apply()
-        sharedPreferences.edit().putString(HTML, html).apply()
+        //sharedPreferences.edit().putString(HTML, html).apply()
     }
 }
