@@ -14,6 +14,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import com.google.android.material.appbar.MaterialToolbar
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import ua.com.anyapps.alicrab.R
 import ua.com.anyapps.alicrab.databinding.FragmentBrowseBinding
@@ -21,6 +22,7 @@ import ua.com.anyapps.alicrab.dialogs.ChartDialog
 import ua.com.anyapps.alicrab.utils.Utils
 import ua.com.anyapps.alicrab.viewmodel.BrowseViewModel
 import ua.com.anyapps.alicrab.viewmodel.SharedViewModel
+import java.nio.file.Files.size
 
 
 class BrowseFragment : Fragment() {
@@ -192,6 +194,8 @@ class BrowseFragment : Fragment() {
 
         binding?.fabBrowse?.setOnClickListener(View.OnClickListener {
 
+            sharedVM.getChartDataBtnClick()
+
             val chartDialog: ChartDialog = ChartDialog().also {
                 it.show(requireActivity().supportFragmentManager, it.javaClass.simpleName)
             }
@@ -200,5 +204,19 @@ class BrowseFragment : Fragment() {
 
     private fun setupViewModel(){
         browseViewModel = BrowseViewModel()
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        val navView: BottomNavigationView = requireActivity().findViewById(R.id.bottom_menu)
+        // Find the menu item and then disable it
+        navView.menu.findItem(R.id.chartFragment).isEnabled = false
+        navView.menu.setGroupCheckable(0, true, false)
+        for (i in 0 until navView.menu.size()) {
+            navView.menu.getItem(i).isChecked = false
+        }
+        navView.menu.setGroupCheckable(0, true, true)
+        //requireActivity().findViewById<View>(R.id.chartFragment).setBackgroundColor(R.color.purple_200)
     }
 }

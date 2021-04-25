@@ -32,6 +32,7 @@
         android:icon="@drawable/ic_chart"
         android:orderInCategory = "100"
         android:contentDescription="@string/nav_chart_btn_text"
+        android:enabled="false"
         />
     <item
         android:id = "@+id/historyFragment"

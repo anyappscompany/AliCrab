@@ -57,13 +57,15 @@ class ChartDialog: DialogFragment() {
     }
 
     fun initObservers(){
-        sharedVM.getUrl().observe(requireActivity()) {
+        /*sharedVM.getUrl().observe(requireActivity()) {
             chartDialogViewModel.getChartDataBtnClick(it)
-        }
+        }*/
 
-        chartDialogViewModel.getChartData().observe(requireActivity()) {
-            Log.d("debapp", "New chart data is: ${it.product_title}")
-            Toast.makeText(requireContext(), it.product_title, Toast.LENGTH_SHORT).show()
+        sharedVM.getChartData()?.let {
+            it.observe(requireActivity()) {
+                Log.d("debapp", "New chart data is: ${it?.product_title}")
+                //Toast.makeText(requireContext(), it.product_title, Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

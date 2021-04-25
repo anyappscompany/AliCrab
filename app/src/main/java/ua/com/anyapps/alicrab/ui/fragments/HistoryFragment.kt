@@ -42,7 +42,7 @@ class HistoryFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_browse, container, false)
+        val view = inflater.inflate(R.layout.fragment_history, container, false)
         topAppBar = requireActivity().findViewById(R.id.topAppBar)
 
         setupMenu()
