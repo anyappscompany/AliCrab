@@ -209,14 +209,14 @@ class BrowseFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val navView: BottomNavigationView = requireActivity().findViewById(R.id.bottom_menu)
+        /*val navView: BottomNavigationView = requireActivity().findViewById(R.id.bottom_menu)
         // Find the menu item and then disable it
         navView.menu.findItem(R.id.chartFragment).isEnabled = false
         navView.menu.setGroupCheckable(0, true, false)
         for (i in 0 until navView.menu.size()) {
             navView.menu.getItem(i).isChecked = false
         }
-        navView.menu.setGroupCheckable(0, true, true)
+        navView.menu.setGroupCheckable(0, true, true)*/
         //requireActivity().findViewById<View>(R.id.chartFragment).setBackgroundColor(R.color.purple_200)
     }
 }
