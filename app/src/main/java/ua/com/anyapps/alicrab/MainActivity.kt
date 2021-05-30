@@ -3,6 +3,7 @@ package ua.com.anyapps.alicrab
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
 import androidx.fragment.app.activityViewModels
@@ -33,7 +34,10 @@ class MainActivity : BaseActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.bottomMenu.apply {
+
+        setSupportActionBar(binding.topAppBar)
+        setupNavHostFragmentNavigation()
+        /*binding.bottomMenu.apply {
             background = null
             menu.getItem(2).isEnabled = false
         }
@@ -50,15 +54,28 @@ class MainActivity : BaseActivity() {
             navView.menu.setGroupCheckable(0, true, true)
 
             findNavController(R.id.nav_host_fragment).navigate(R.id.chartFragment)
-        })
+        })*/
+
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.homeFragment->navController.navigate(R.id.homeFragment)
+            R.id.browseFragment->navController.navigate(R.id.browseFragment)
+            R.id.chartFragment->navController.navigate(R.id.chartFragment)
+            R.id.historyFragment->navController.navigate(R.id.historyFragment)
+            R.id.settingsFragment->navController.navigate(R.id.settingsFragment)
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun setupNavHostFragmentNavigation(){
         navController = findNavController(R.id.nav_host_fragment)
-        binding.bottomMenu.setupWithNavController(navController)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.top_app_bar_menu, menu)
         return super.onCreateOptionsMenu(menu)
     }
 }

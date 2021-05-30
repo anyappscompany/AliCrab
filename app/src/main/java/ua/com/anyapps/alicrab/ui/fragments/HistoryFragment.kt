@@ -34,8 +34,8 @@ class HistoryFragment : Fragment() {
     }
 
     fun setupMenu(){
-        topAppBar?.menu?.clear()
-        topAppBar?.inflateMenu(R.menu.default_menu)
+        //topAppBar?.menu?.clear()
+        //topAppBar?.inflateMenu(R.menu.default_menu)
     }
 
     override fun onCreateView(

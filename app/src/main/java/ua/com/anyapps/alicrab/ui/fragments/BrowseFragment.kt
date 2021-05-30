@@ -47,11 +47,11 @@ class BrowseFragment : Fragment() {
     }
 
     fun setupMenu(){
-        topAppBar?.menu?.clear()
-        topAppBar?.inflateMenu(R.menu.top_app_bar_menu)
+        //topAppBar?.menu?.clear()
+        //topAppBar?.inflateMenu(R.menu.top_app_bar_menu)
     }
 
-    private fun menuListener(): Toolbar.OnMenuItemClickListener {
+    /*private fun menuListener(): Toolbar.OnMenuItemClickListener {
         return Toolbar.OnMenuItemClickListener{
             when(it.itemId){
                 R.id.browser_menu_item_home -> {
@@ -75,7 +75,7 @@ class BrowseFragment : Fragment() {
             }
             true
         }
-    }
+    }*/
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_browse, container, false)
@@ -190,7 +190,7 @@ class BrowseFragment : Fragment() {
             }
         }
 
-        topAppBar?.setOnMenuItemClickListener(menuListener())
+        //topAppBar?.setOnMenuItemClickListener(menuListener())
 
         binding?.fabBrowse?.setOnClickListener(View.OnClickListener {
 
